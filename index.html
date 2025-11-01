@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buluğu'l-Merâm Hadisleri Anlamları</title>
     <!-- Tailwind CSS CDN -->
+    <script>
+        // Tailwind'e 'class' (sınıf) bazlı karanlık mod kullanmasını söylüyoruz
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Font (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +19,9 @@
     
     <style>
         /* Modern bir font ailesi tanımlayalım */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* Tailwind bg-slate-50 */
@@ -37,288 +46,417 @@
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen bg-slate-100 text-slate-800">
+<body class="flex flex-col min-h-screen bg-slate-100 text-slate-800 dark:bg-gray-900 dark:text-slate-200 transition-colors duration-300">
 
     <!-- ÜST BİLGİ (HEADER) -->
-    <header class="bg-gray-800 text-white p-6 shadow-lg">
-        <h1 class="text-3xl md:text-4xl font-bold text-center tracking-tight">
-            Buluğul Meram 47-55. Sayfalarda Bulunan Hadisler
-        </h1>
+    <header class="bg-gray-800 text-white p-6 shadow-lg dark:bg-gray-800">
+        <div class="container mx-auto max-w-4xl flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-center tracking-tight flex-1">
+                Buluğul Meram 47-55. Sayfalarda Bulunan Hadisler
+            </h1>
+            <!-- Karanlık Mod Düğmesi -->
+            <button id="theme-toggle" class="ml-4 p-2 rounded-full text-gray-300 hover:text-white hover:bg-gray-700 transition-all">
+                <!-- Ay ikonu (varsayılan) -->
+                <svg id="theme-icon-dark" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+                <!-- Güneş ikonu -->
+                <svg id="theme-icon-light" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
     </header>
 
     <!-- ANA İÇERİK (MAIN) -->
     <main class="flex-grow container mx-auto p-4 md:p-8 max-w-4xl">
         
-        <h1 class="text-4xl font-bold text-gray-700 text-center mb-6">
+        <h1 class="text-4xl font-bold text-gray-700 dark:text-gray-300 text-center mb-6">
             Kitâbu't-Tahâre
         </h1>
-        <p class="text-xl text-gray-600 text-center mb-12">(Temizlik Kitabı)</p>
+        <p class="text-xl text-gray-600 dark:text-gray-400 text-center mb-12">(Temizlik Kitabı)</p>
+
+        <!-- Hadis Navigasyonu -->
+        <nav class="p-4 bg-white rounded-lg shadow-md mb-12 sticky top-4 z-10 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-center mb-4 text-gray-700 dark:text-gray-200">Hadislere Göz At</h3>
+            <div class="flex flex-wrap justify-center gap-2">
+                <a href="#hadis-1" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">1</a>
+                <a href="#hadis-2" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">2</a>
+                <a href="#hadis-3-4" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">3-4</a>
+                <a href="#hadis-5" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">5</a>
+                <a href="#hadis-6" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">6</a>
+                <a href="#hadis-7-9" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">7-9</a>
+                <a href="#hadis-10" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">10</a>
+                <a href="#hadis-11" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">11</a>
+                <a href="#hadis-12" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">12</a>
+                <a href="#hadis-13" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">13</a>
+                <a href="#hadis-14" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">14</a>
+                <a href="#hadis-15" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">15</a>
+                <a href="#hadis-16" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">16</a>
+                <a href="#hadis-17" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">17</a>
+                <a href="#hadis-18" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">18</a>
+                <a href="#hadis-19" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">19</a>
+                <a href="#hadis-20" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">20</a>
+                <a href="#hadis-21" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">21</a>
+                <a href="#hadis-22" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">22</a>
+                <a href="#hadis-23" class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full text-sm font-medium hover:bg-gray-300 transition-all dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">23</a>
+            </div>
+        </nav>
 
         <!-- BÖLÜM 1 -->
-        <h2 class="text-3xl font-semibold text-gray-700 mb-8 pb-2 border-b-2 border-gray-300">
+        <h2 class="text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-8 pb-2 border-b-2 border-gray-300 dark:border-gray-700">
             Bab'ül-Miyâh
         </h2>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-1" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">1</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "هُوَ الطَّهُورُ مَاؤُهُ، الْحِلُّ مَيْتَتُهُ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Onun suyu temizleyicidir, ölüsü (içindeki balık vb.) helaldir."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Hureyre (r.a.), Hadis 1</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Hureyre (r.a.), Hadis 1</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-2" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">2</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِنَّ الْمَاءَ طَهُورٌ لَا يُنَجِّسُهُ شَيْءٌ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Şüphesiz su temizleyicidir, ona hiçbir şey necaset (pislik) bulaştıramaz."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Said el-Hudrî (r.a.), Hadis 2</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Said el-Hudrî (r.a.), Hadis 2</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-3-4" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">3-4</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِنَّ الْمَاءَ لَا يُنَجِّسُهُ شَيْءٌ إِلَّا مَا غَلَبَ عَلَى رِيحِهِ وَطَعْمِهِ وَلَوْنِهِ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Şüphesiz suya, kokusuna, tadına veya rengine galebe çalan (değiştiren) bir şey dışında hiçbir şey necaset bulaştıramaz."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Umâme el-Bâhilî (r.a.), Hadis 3</p>
-                <hr class="my-6 border-gray-200">
-                <blockquote class="text-lg text-gray-700 leading-relaxed italic">
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Umâme el-Bâhilî (r.a.), Hadis 3</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <blockquote dir="rtl" class="text-xl md:text-2xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "الْمَاءُ طَهُورٌ إِلَّا إِنْ تَغَيَّرَ رِيحُهُ أَوْ طَعْمُهُ أَوْ لَوْنُهُ بِنَجَاسَةٍ تَحْدُثُ فِيهِ"
+                </blockquote>
+                <blockquote class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
                     Beyhakî'nin rivayetinde ise şöyledir: "Su, içine düşen bir necaset sebebiyle kokusu, tadı veya rengi değişmedikçe temizleyicidir."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Hadis 4</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Hadis 4</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-5" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">5</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِذَا بَلَغَ الْمَاءُ قُلَّتَيْنِ لَمْ يَحْمِلِ الْخَبَثَ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Su iki kulle (yaklaşık 200-220 litre) miktarına ulaşırsa, pislik tutmaz."
                 </blockquote>
-                <p class="text-lg text-gray-700 leading-relaxed italic mt-2">Başka bir lafızda: "Necaset (pis) olmaz."</p>
-                <p class="text-right text-sm text-gray-600 mt-4">- Abdullah b. Ömer (r.a.), Hadis 5</p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mt-2">Başka bir lafızda: "Necaset (pis) olmaz."</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Abdullah b. Ömer (r.a.), Hadis 5</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-6" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">6</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "لَا يَغْتَسِلَنَّ أَحَدُكُمْ فِي الْمَاءِ الدَّائِمِ وَهُوَ جُنُبٌ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Sizden biriniz cünüp iken durgun suya yıkanmasın."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Hureyre (r.a.), Hadis 6</p>
-                <hr class="my-6 border-gray-200">
-                <p class="text-lg text-gray-700 leading-relaxed italic">
-                    Buhârî'nin rivayetinde: "Sizden biriniz durgun olan ve akmayan suya asla idrar yapmasın, sonra da onda yıkamasın." (Hadis 7)
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Hureyre (r.a.), Hadis 6</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                    Buhârî'nin rivayetinde: "Sizden biriniz durgun olan ve akmayan suya asla idrar yapmasın, sonra da onda yıkamasın." 
                 </p>
-                <p class="text-lg text-gray-700 leading-relaxed italic mt-2">
-                    Müslim'in bir rivayetinde: "...sonra da ondan (gusletmesin)."
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mt-2">
+                    Müslim'in bir rivayetinde: "...sonra da ondan (gusletmesin)." 
                 </p>
-                <p class="text-lg text-gray-700 leading-relaxed italic mt-2">
-                    Ebu Davud'un rivayetinde: "Ve onda cünüplükten dolayı gusletmesin."
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mt-2">
+                    Ebu Davud'un rivayetinde: "Ve onda cünüplükten dolayı gusletmesin." 
                 </p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-7-9" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">7-9</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "نَهَى رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ أَنْ يَغْتَسِلَ الرَّجُلُ بِفَضْلِ الْمَرْأَةِ، وَالْمَرْأَةُ بِفَضْلِ الرَّجُلِ، وَلْيَغْتَرِفَا جَمِيعًا"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     Resûlullah (s.a.v.), kadının erkeğin (kullandığı suyun) artığıyla veya erkeğin kadının artığıyla gusletmesini yasakladı. (Ancak) ikisi birlikte (aynı kaptan) avuçlayarak alabilirler.
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Nebi (s.a.v.)'e arkadaşlık etmiş bir zattan, Hadis 7</p>
-                <hr class="my-6 border-gray-200">
-                <blockquote class="text-lg text-gray-700 leading-relaxed italic">
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Nebi (s.a.v.)'e arkadaşlık etmiş bir zattan, Hadis 7</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <blockquote dir="rtl" class="text-xl md:text-2xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "اغْتَسَلَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ بِفَضْلِ مَيْمُونَةَ"
+                </blockquote>
+                <blockquote class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
                     Nebi (s.a.v.) Meymûne (r.anhâ)'nın (guslettiği suyun) artığıyla yıkanırdı.
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- İbn Abbas (r.a.), Hadis 8</p>
-                <hr class="my-6 border-gray-200">
-                <blockquote class="text-lg text-gray-700 leading-relaxed italic">
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- İbn Abbas (r.a.), Hadis 8</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <blockquote dir="rtl" class="text-xl md:text-2xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِنَّ الْمَاءَ لَا يُجْنِبُ"
+                </blockquote>
+                <blockquote class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
                     Sünen sahiplerinin rivayetine göre: Nebi (s.a.v.)'in hanımlarından biri bir leğende gusletmişti. (Allah Resûlü) gelip o sudan gusletmek isteyince hanımı ona: "Ben cünüp idim" dedi. Bunun üzerine (Allah Resûlü): "Şüphesiz su cünüp olmaz (kirlenmez)" buyurdu.
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Hadis 9</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Hadis 9</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-10" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">10</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "طَهُورُ إِنَاءِ أَحَدِكُمْ إِذَا وَلَغَ فِيهِ الْكَلْبُ أَنْ يَغْسِلَهُ سَبْعَ مَرَّاتٍ أُولَاهُنَّ بِالتُّرَابِ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Sizden birinizin kabını köpek yaladığı zaman onu temizlemesi, ilki toprakla olmak üzere yedi defa yıkamasıdır."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Hureyre (r.a.), Hadis 10</p>
-                <hr class="my-6 border-gray-200">
-                <p class="text-lg text-gray-700 leading-relaxed italic">
-                    Müslim'in başka bir lafzında: "(İçindekini) döksün."
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Hureyre (r.a.), Hadis 10</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                    Müslim'in başka bir lafzında: "(İçindekini) döksün." 
                 </p>
-                <p class="text-lg text-gray-700 leading-relaxed italic mt-2">
-                    Tirmizî'nin rivayetinde: "Sonuncusu veya ilki toprakla."
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mt-2">
+                    Tirmizî'nin rivayetinde: "Sonuncusu veya ilki toprakla." 
                 </p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-11" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">11</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
-                    Kedi hakkında, "O necis (pis) değildir. O ancak etrafınızda dolaşan (ev hayvan)lardandır."
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِنَّهَا لَيْسَتْ بِنَجَسٍ، إِنَّهَا مِنَ الطَّوَّافِينَ عَلَيْكُمْ وَالطَّوَّافَاتِ"
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Katâde (r.a.), Kedi hakkında, Hadis 11</p>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
+                    "O necis (pis) değildir. O ancak etrafınızda dolaşan (ev hayvan)lardandır."
+                </blockquote>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Katâde (r.a.), Kedi hakkında, Hadis 11</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-12" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">12</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "...فَلَمَّا قَضَى بَوْلَهُ، أَمَرَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ بِذَنُوبٍ مِنْ مَاءٍ فَأُهْرِيقَ عَلَيْهِ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     Bir bedevi gelip mescidin bir köşesine idrarını yaptı. İnsanlar onu (engellemek için) azarladı. Nebi (s.a.v.) ise onlara engel oldu. Bedevi idrarını bitirince, Nebi (s.a.v.) bir kova su getirilmesini emretti ve su oraya döküldü.
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Enes b. Mâlik (r.a.), Hadis 12</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Enes b. Mâlik (r.a.), Hadis 12</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-13" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">13</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "أُحِلَّتْ لَنَا مَيْتَتَانِ وَدَمَانِ، فَأَمَّا الْمَيْتَتَانِ: فَالْحُوتُ وَالْجَرَادُ، وَأَمَّا الدَّمَانِ: فَالْكَبِدُ وَالطِّحَالُ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Bize iki ölü (meyte) ve iki kan helal kılındı. İki ölü: Çekirge ve balıktır. İki kan ise: Dalak ve karaciğerdir."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- İbn Ömer (r.a.), Hadis 13</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- İbn Ömer (r.a.), Hadis 13</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-14" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">14</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِذَا وَقَعَ الذُّبَابُ فِي شَرَابِ أَحَدِكُمْ فَلْيَغْمِسْهُ ثُمَّ لِيَنْزِعْهُ، فَإِنَّ فِي إِحْدَى جَنَاحَيْهِ دَاءً وَفِي الْأُخْرَى شِفَاءً"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Birinizin içeceğine sinek düştüğü zaman onu (tamamen) batırsın, sonra çıkarsın. Çünkü onun kanatlarının birinde hastalık, diğerinde şifa vardır."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Hureyre (r.a.), Hadis 14</p>
-                <hr class="my-6 border-gray-200">
-                <p class="text-lg text-gray-700 leading-relaxed italic">
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Hureyre (r.a.), Hadis 14</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
                     Ebu Davud (rivayetinde) şunu eklemiştir: "Ve o, içinde hastalık olan kanadıyla korunur (önce onu batırır)."
                 </p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-15" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">15</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "مَا قُطِعَ مِنَ الْبَهِيمَةِ وَهِيَ حَيَّةٌ فَهُوَ مَيْتَةٌ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Hayvan hayatta iken ondan kesilen parça, ölü (meyte) hükmündedir."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Vâkıd el-Leysî (r.a.), Hadis 15</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Vâkıd el-Leysî (r.a.), Hadis 15</p>
             </div>
         </div>
 
         <!-- BÖLÜM 2 -->
-        <h2 class="text-3xl font-semibold text-gray-700 mt-16 mb-8 pb-2 border-b-2 border-gray-300">
+        <h2 class="text-3xl font-semibold text-gray-700 dark:text-gray-300 mt-16 mb-8 pb-2 border-b-2 border-gray-300 dark:border-gray-700">
             Bâbu'l-Âniye
         </h2>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-16" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">16</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "لَا تَشْرَبُوا فِي آنِيَةِ الذَّهَبِ وَالْفِضَّةِ، وَلَا تَأْكُلُوا فِي صِحَافِهَا، فَإِنَّهَا لَهُمْ فِي الدُّنْيَا وَلَكُمْ فِي الْآخِرَةِ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Altın ve gümüş kaplarda içmeyin ve onların tabaklarında yemeyin. Çünkü onlar dünyada onlar (kâfirler) için, ahirette ise sizin içindir."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Huzeyfe b. el-Yemân (r.a.), Hadis 16</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Huzeyfe b. el-Yemân (r.a.), Hadis 16</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-17" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">17</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "الَّذِي يَشْرَبُ فِي إِنَاءِ الْفِضَّةِ إِنَّمَا يُجَرْجِرُ فِي بَطْنِهِ نَارَ جَهَنَّمَ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Gümüş kaptan içen kimse, karnına ancak cehennem ateşini doldurur."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ümmü Seleme (r.anhâ), Hadis 17</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ümmü Seleme (r.anhâ), Hadis 17</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-18" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">18</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "إِذَا دُبِغَ الْإِهَابُ فَقَدْ طَهُرَ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Deri tabaklandığı zaman temiz olur."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- İbn Abbas (r.a.), Hadis 18</p>
-                <hr class="my-6 border-gray-200">
-                <p class="text-lg text-gray-700 leading-relaxed italic">
-                    Dört (Sünen) sahibinin rivayetinde ise: "Hangi deri tabaklanırsa..."
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- İbn Abbas (r.a.), Hadis 18</p>
+                <hr class="my-6 border-gray-200 dark:border-gray-700">
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                    Dört (Sünen) sahibinin rivayetinde ise: "Hangi deri tabaklanırsa..." 
                 </p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-19" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">19</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "دِبَاغُ جُلُودِ الْمَيْتَةِ طُهُورُهَا"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Ölü hayvan derisinin tabaklanması, onun temizlenmesidir."
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Seleme b. el-Muhabbik (r.a.), Hadis 19</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Seleme b. el-Muhabbik (r.a.), Hadis 19</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-20" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">20</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "أَفَلَا أَخَذْتُمْ إِهَابَهَا؟" ... "إِنَّهَا مَيْتَةٌ" ... "يُطَهِّرُهَا الْمَاءُ وَالْقَرَظُ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     Resûlullah (s.a.v.) sürüklenen bir koyun leşine rastladı ve: "Derisini alsaydınız ya?" buyurdu.
                 </blockquote>
-                <p class="text-lg text-gray-700 leading-relaxed italic mt-2">Onlar: "O bir leştir" dediler. Bunun üzerine (Allah Resûlü): "Onu su ve karaz (bir bitki türü) temizler" buyurdu.</p>
-                <p class="text-right text-sm text-gray-600 mt-4">- Meymûne (r.anhâ), Hadis 20</p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mt-2">Onlar: "O bir leştir" dediler. Bunun üzerine (Allah Resûlü): "Onu su ve karaz (bir bitki türü) temizler" buyurdu.</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Meymûne (r.anhâ), Hadis 20</p>
             </div>
         </div>
 
         <!-- Hadis Kartı (Gruplandırılmış) -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-21" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">21</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "...لَا تَأْكُلُوا فِيهَا، إِلَّا أَنْ لَا تَجِدُوا غَيْرَهَا فَاغْسِلُوهَا وَكُلُوا فِيهَا"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "Ey Allah'ın Resûlü! Biz Ehl-i Kitap olan bir kavmin toprağındayız. Onların kaplarında yemek yiyebilir miyiz?" dedim.
                 </blockquote>
-                <p class="text-lg text-gray-700 leading-relaxed italic mt-2">Şöyle buyurdu: "Onlarda yemeyin. Ancak onlardan başkasını bulamazsanız, onları yıkayın ve onlarda yiyin."</p>
-                <p class="text-right text-sm text-gray-600 mt-4">- Ebu Sa'lebe el-Huşenî (r.a.), Hadis 21</p>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic mt-2">Şöyle buyurdu: "Onlarda yemeyin. Ancak onlardan başkasını bulamazsanız, onları yıkayın ve onlarda yiyin."</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Ebu Sa'lebe el-Huşenî (r.a.), Hadis 21</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-22" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">22</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "أَنَّ النَّبِيَّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ وَأَصْحَابَهُ تَوَضَّئُوا مِنْ مَزَادَةِ امْرَأَةٍ مُشْرِكَةٍ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     Nebi (s.a.v.) ve ashabı müşrik bir kadının (su) kırbasından abdest aldılar.
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- İmrân b. Husayn (r.a.), Hadis 22</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- İmrân b. Husayn (r.a.), Hadis 22</p>
             </div>
         </div>
 
         <!-- Hadis Kartı -->
-        <div class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl">
+        <div id="hadis-23" class="hadith-card bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-xl relative dark:bg-gray-800 dark:shadow-slate-700/[.2]">
+            <span class="absolute top-4 right-4 bg-gray-700 text-white text-xs font-bold py-1 px-3 rounded-full dark:bg-gray-600">23</span>
             <div class="p-6 md:p-8">
-                <blockquote class="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+                <blockquote dir="rtl" class="text-2xl md:text-3xl text-emerald-700 dark:text-emerald-300 leading-relaxed italic text-right mb-4">
+                    "انْكَسَرَ قَدَحُ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، فَاتَّخَذَ مَكَانَ الشَّعْبِ سِلْسِلَةً مِنْ فِضَّةٍ"
+                </blockquote>
+                <blockquote class="text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     Nebi (s.a.v.)'in (ahşap) kadehi kırıldı. O da kırılan yere gümüşten bir halka (bağ) taktırdı.
                 </blockquote>
-                <p class="text-right text-sm text-gray-600 mt-4">- Enes b. Mâlik (r.a.), Hadis 23</p>
+                <p class="text-right text-sm text-gray-600 dark:text-gray-400 mt-4">- Enes b. Mâlik (r.a.), Hadis 23</p>
             </div>
         </div>
 
     </main>
 
     <!-- ALT BİLGİ (FOOTER) -->
-    <footer class="bg-gray-700 text-white p-6 text-center mt-12">
+    <footer class="bg-gray-700 text-white p-6 text-center mt-12 dark:bg-gray-800">
         <p class="text-sm">Hazırlayan Muhammet Sıtkı Karabağ</p>
     </footer>
 
     <script>
-        // Sayfa yüklendiğinde animasyonları ayarlamak için JavaScript
+        // Sayfa yüklendiğinde animasyonları ve tema değiştiriciyi ayarlamak için JavaScript
         document.addEventListener("DOMContentLoaded", () => {
             const cards = document.querySelectorAll('.hadith-card');
-
+            
             // Intersection Observer: Öğeler ekrana girdiğinde tetiklenir
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -338,9 +476,42 @@
             cards.forEach(card => {
                 observer.observe(card);
             });
+
+            // Karanlık Mod Düğmesi Logiği
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIconDark = document.getElementById('theme-icon-dark');
+            const themeIconLight = document.getElementById('theme-icon-light');
+            const docElement = document.documentElement;
+
+            // Tema durumunu güncelleyen fonksiyon
+            function updateThemeIcon(isDarkMode) {
+                if (isDarkMode) {
+                    themeIconDark.classList.add('hidden');
+                    themeIconLight.classList.remove('hidden');
+                    docElement.classList.add('dark');
+                } else {
+                    themeIconDark.classList.remove('hidden');
+                    themeIconLight.classList.add('hidden');
+                    docElement.classList.remove('dark');
+                }
+            }
+
+            // Sayfa yüklenirken kayıtlı temayı veya sistem tercihini kontrol et
+            let isDarkMode = localStorage.getItem('theme') === 'dark' || 
+                             (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            
+            updateThemeIcon(isDarkMode);
+
+            // Düğmeye tıklama olayı
+            themeToggleBtn.addEventListener('click', () => {
+                isDarkMode = !isDarkMode; // Durumu tersine çevir
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light'); // Seçimi kaydet
+                updateThemeIcon(isDarkMode); // İkonu ve temayı güncelle
+            });
         });
     </script>
 
 </body>
 </html>
+
 
